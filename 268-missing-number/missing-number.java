@@ -1,23 +1,13 @@
-
 class Solution {
-    public int missingNumber(int[] nums) {
-        if (nums.length == 0)
-            return 0;
 
-        int len = nums.length;
-        Arrays.sort(nums);
+        public int missingNumber(int[] nums) {
 
-        // Handling the case where 0 is missing
-        if (nums[0] != 0)
-            return 0;
+    int xor = 0, i = 0;
+	for (i = 0; i < nums.length; i++) {
+		xor = xor ^ i ^ nums[i];
+	}
 
-        for (int i = 1; i < len; i++) {
-            if (nums[i] != i) {
-                return i;
-            }
-        }
-
-        // If no missing number is found, the missing number is len
-        return len;
-    }
+	return xor ^ i;
+}
+        
 }
