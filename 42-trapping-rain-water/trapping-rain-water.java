@@ -1,32 +1,35 @@
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
-        int left = 0;
-        int right = n -1;
+        int left =0;
+        int right = n-1;
+        int leftBar = height[0];
+        int rightBar = height[n-1];
         int ans =0;
-        int leftbar = height[0];
-        int rightbar = height [n-1];
         while(left <= right){
-            if(leftbar < rightbar ){
-                if (height[left] > leftbar){
-                    leftbar = height[left];
+            if(leftBar < rightBar){
+                if(height[left] >leftBar){
+                    leftBar = height[left];
                 }
                 else{
-                    ans += leftbar - height[left];
+                    ans += leftBar - height[left];
                     left++;
                 }
+
             }
             else{
-                if (height[right] > rightbar){
-                    rightbar = height[right];
-                }
-                else{
-                    ans += rightbar - height[right];
-                    right--;
-                }
+             if(height[right] > rightBar){
+                 rightBar = height[right];
+             }
+             else{
+                 ans += rightBar - height[right];
+                 right--;
+             }
+
+
             }
         }
-      return ans;
-        
+
+        return ans;
     }
 }
