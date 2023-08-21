@@ -14,6 +14,7 @@ class Solution {
              sbs.append('#');
              sbs.append(hash[i]);
          }
+          System.out.println("sbs content: " + sbs.toString()); 
          String key = sbs.toString();
          if(!map.containsKey(key)){
              map.put(key, new ArrayList());
