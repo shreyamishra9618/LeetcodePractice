@@ -4,7 +4,7 @@ class Solution {
         for(int[] point : points){
             maxHeap.add(point);
             if(maxHeap.size() > k){
-                maxHeap.poll();
+               maxHeap.poll();
             }
         }
         int[][] res = new int[k][2];
@@ -12,12 +12,13 @@ class Solution {
         while(maxHeap.isEmpty() == false){
             res[i++] = maxHeap.poll();
         }
-
         return res;
+
+        
     }
     public int dist(int[] points){
-       int x = points[0];
-       int y = points[1];
-       return x * x + y * y;
+        int x = points[0];
+        int y = points[1];
+        return x*x + y*y;
     }
 }
