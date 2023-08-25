@@ -1,24 +1,28 @@
 class Solution {
     public int longestConsecutive(int[] nums) {
-        Arrays.sort(nums);
-        if(nums.length == 0) return 0;
-        int consecutive =1;
-        int longestStreak =1;
-        for(int i =1; i < nums.length; i++){
-             if (nums[i] == nums[i - 1])
-                continue; // Skip duplicate numbers
-            
-            if(nums[i] == nums[i -1] + 1){
-                consecutive++;
-              longestStreak = Math.max(longestStreak, consecutive);
-            }
-            else{
-               
-                consecutive =1;
-
+        if (nums.length == 0) return 0;
+        
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+        
+        int longestStreak = 0;
+        
+        for (int num : numSet) {
+            if (!numSet.contains(num - 1)) { // Only consider starting elements of a streak
+                int currentNum = num;
+                int currentStreak = 1;
+                
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum++;
+                    currentStreak++;
+                }
+                
+                longestStreak = Math.max(longestStreak, currentStreak);
             }
         }
-
+        
         return longestStreak;
     }
 }
