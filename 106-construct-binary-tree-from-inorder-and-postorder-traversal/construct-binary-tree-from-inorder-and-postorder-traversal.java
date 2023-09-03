@@ -1,37 +1,30 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
- * }
- */
+import java.util.HashMap;
+
 class Solution {
     public TreeNode buildTree(int[] inorder, int[] postorder) {
-       return helperTree(inorder, 0, inorder.length -1, postorder, 0, postorder.length -1);
+        // Create a hashmap to store the indices of elements in the inorder array
+        HashMap<Integer, Integer> inorderMap = new HashMap<>();
+        for (int i = 0; i < inorder.length; i++) {
+            inorderMap.put(inorder[i], i);
+        }
+
+        return helperTree(inorder, 0, inorder.length - 1, postorder, 0, postorder.length - 1, inorderMap);
     }
 
-    public TreeNode helperTree(int[] inorder, int inStart, int intEnd, int[] postorder, int posStart, int posEnd){
+    public TreeNode helperTree(int[] inorder, int inStart, int inEnd, int[] postorder, int posStart, int posEnd, HashMap<Integer, Integer> inorderMap) {
+        if (inStart > inEnd || posStart > posEnd) return null;
 
-        if(inStart >  intEnd || posStart > posEnd) return null;
-
+        // The root node's value is at the end of the postorder array
         TreeNode root = new TreeNode(postorder[posEnd]);
-        int rootIndex = 0;
-        for(int i =0; i < inorder.length; i++){
-            if(inorder[i] == root.val){
-                rootIndex = i;
-                break;
-            }
-        }
-        root.left = helperTree(inorder, inStart, rootIndex -1, postorder, posStart, posStart + rootIndex - inStart -1);
-        root.right = helperTree(inorder, rootIndex + 1, intEnd, postorder, posStart + rootIndex - inStart, posEnd -1);
+        int rootIndex = inorderMap.get(root.val);
+
+        // Calculate the size of the left subtree
+        int leftSubtreeSize = rootIndex - inStart;
+
+        // Recursively construct the left and right subtrees
+        root.left = helperTree(inorder, inStart, rootIndex - 1, postorder, posStart, posStart + leftSubtreeSize - 1, inorderMap);
+        root.right = helperTree(inorder, rootIndex + 1, inEnd, postorder, posStart + leftSubtreeSize, posEnd - 1, inorderMap);
+
         return root;
     }
 }
