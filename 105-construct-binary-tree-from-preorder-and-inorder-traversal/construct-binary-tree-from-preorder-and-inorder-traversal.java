@@ -15,27 +15,25 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder == null || inorder == null || preorder.length != inorder.length){
-            return null;
-        }
-         return helperTree(preorder, inorder, 0,0, inorder.length -1); 
+
+      return helperTree(0,0, inorder.length, preorder, inorder);  
     }
 
- private TreeNode helperTree(int[] preorder, int[] inorder, int preStart, int inStart, int inEnd){
-         if(preStart > preorder.length -1 || inStart > inEnd){
-             return null;
-         }
-         int rootVal = preorder[preStart];
-         TreeNode root = new TreeNode(rootVal);
-         int rootindex = 0;
-         for(int i =inStart; i <= inEnd ; i++){
-            if(inorder[i] == root.val){
-                rootindex =i;
-                break;
+    public TreeNode helperTree( int preStart, int inStart, int inEnd, int[] preorder, int[] inorder){
+        if(preStart > preorder.length -1 || inStart > inEnd ) return null;
+        int rootVal = preorder[preStart];
+        TreeNode root = new TreeNode(rootVal);
+        int inIndex =0;
+        for(int i = inStart; i <= inEnd; i++){
+            if(  root.val == inorder[i] ){
+                 inIndex = i;
+                 break;
             }
-         }
-         root.left = helperTree(preorder, inorder, preStart +1, inStart, rootindex - 1);
-        root.right = helperTree(preorder, inorder, preStart + rootindex - inStart +1, rootindex +1, inEnd);
-        return root;
+          }
+          root.left =  helperTree(preStart + 1,inStart, inIndex - 1, preorder, inorder);  
+          root.right =  helperTree(preStart + inIndex - inStart +1, inIndex + 1, inEnd, preorder, inorder);  
+          return root;
+        }
+
+
     }
-}
