@@ -2,24 +2,20 @@ class Solution {
     public double findMaxAverage(int[] nums, int k) {
         int left =1;
         int right = k;
-        double average =0;
-        double sum = 0;
-        double max =0;
-        for(int i =0; i < k; i++){
+        double sum =0, avg =0, max=0;
+        for(int i =0; i < k ; i++){
             sum += nums[i];
         }
-       average = sum/k;
-       max = average;
-       
+        avg = sum/k;
+        max = avg;
         while(right < nums.length){
-            System.out.println(nums[right]);
             sum += nums[right];
             sum -= nums[left -1];
-            average = sum/k;
-            max = Math.max(max, average);
+            avg = sum/k;
+            max =Math.max(max, avg);
             left++;
             right++;
         }
-        return max;
+       return max; 
     }
 }
