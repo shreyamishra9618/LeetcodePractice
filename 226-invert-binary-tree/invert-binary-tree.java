@@ -15,18 +15,20 @@
  */
 class Solution {
     public TreeNode invertTree(TreeNode root) {
+        if( root == null) return null;
         Queue<TreeNode> q = new LinkedList<>();
-        if(root == null) return null;
         q.offer(root);
         while(!q.isEmpty()){
             int size = q.size();
-            TreeNode cur = q.poll();
-            TreeNode temp = cur.left;
-            cur.left = cur.right;
-            cur.right = temp;
-            if(cur.left != null) q.offer(cur.left);
-            if(cur.right != null) q.offer(cur.right);
+            for(int i =0; i < size; i ++){
+               TreeNode curr = q.poll();
+               TreeNode temp = curr.left;
+               curr.left = curr.right;
+               curr.right = temp;
+               if( curr.left != null) q.offer(curr.left);
+               if(curr.right != null) q.offer(curr.right);
+            }
         }
-       return root; 
+        return root;
     }
 }
