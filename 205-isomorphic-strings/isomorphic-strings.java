@@ -15,8 +15,10 @@ class Solution {
                 return false;
 
             mapS[s.charAt(i)]=i+1;
+
             mapT[t.charAt(i)]=i+1;
         }
+       
         return true;
     }
 }
