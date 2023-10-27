@@ -7,6 +7,7 @@ class Solution {
             if(set.size() > k){
                 set.remove(nums[i-k]);
             }
+            
         }
        return false; 
     }
