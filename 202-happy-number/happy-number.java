@@ -6,7 +6,7 @@ class Solution {
         do{
             slow =compute(slow);
             fast =compute(compute(fast));
-            if(fast == 1) return true;
+            if(slow == 1) return true;
         }
         while(slow != fast);
             return false;
