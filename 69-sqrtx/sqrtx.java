@@ -5,9 +5,9 @@ class Solution {
         int left =2;
         int right = x/2;
         long num;
-        int mid;
+        // int mid;
         while(left <= right){
-             mid = left + (right - left)/2;
+            int mid = left + (right - left)/2;
              num = (long) mid *mid;
             if(num > x){
                 right = mid -1;
