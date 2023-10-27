@@ -29,6 +29,18 @@ class Solution {
                if(curr.right != null) q.offer(curr.right);
             }
         }
+
+          // A simple method to print the tree (in-order traversal)
+          printTree(root);
+  
         return root;
+    }
+      public  void printTree(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        printTree(root.left);
+        System.out.print(root.val + " ");
+        printTree(root.right);
     }
 }
