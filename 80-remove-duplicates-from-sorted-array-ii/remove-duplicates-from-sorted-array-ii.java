@@ -1,17 +1,28 @@
 class Solution {
     public int removeDuplicates(int[] nums) {
-        int j=1, count =1;
-        for(int i =1; i < nums.length; i++){
-            if(nums[i] == nums[i-1]){
-                count++;
-            }
-            else{
-                count =1;
-            }
-            if(count <= 2){
-                nums[j++] = nums[i];
-            }
+        int pos = 0;
+        int curVal = nums[0];
+        int count = 1;
+
+        if(nums.length == 1){
+            return 1;
         }
-       return j;
+
+        for(int i = 1; i < nums.length; i++ ){
+            if(nums[i] != curVal){
+                pos++;
+                nums[pos] = nums[i];
+                curVal = nums[i];
+                count = 1;
+            } else if(nums[i] == curVal && count == 1){
+                pos++;
+                nums[pos] = nums[i];
+                count = 2;
+            }
+
+            
+        }
+
+        return pos+1;
     }
 }
