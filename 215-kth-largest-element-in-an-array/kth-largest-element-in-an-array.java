@@ -7,8 +7,11 @@ for(int i = 0; i < k; i++){
 }
 
 			for(int i=k; i < nums.length; i++){
+				if(nums[i] > minHeap.peek()){
 					minHeap.add(nums[i]);
 					minHeap.remove();
+				}
+					
 			}
 		
 			return minHeap.peek();
