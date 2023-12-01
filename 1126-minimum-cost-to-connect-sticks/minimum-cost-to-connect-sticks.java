@@ -1,6 +1,6 @@
 class Solution {
     public int connectSticks(int[] sticks) {
-        PriorityQueue<Integer> pq = new PriorityQueue<>((a,b)-> a- b );
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
         int cost =0;
         for(int stick : sticks){
             pq.add(stick);
