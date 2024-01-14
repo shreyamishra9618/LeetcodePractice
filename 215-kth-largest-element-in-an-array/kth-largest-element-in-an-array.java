@@ -4,8 +4,7 @@ class Solution {
         for(int num : nums){
             list.add(num);
         }
-        return quickSelect(list,k);
-        
+        return quickSelect(list, k);  
     }
     public int quickSelect(List<Integer> nums, int k){
         int pivotIndex = new Random().nextInt(nums.size());
@@ -16,17 +15,17 @@ class Solution {
         for(int num : nums){
             if(num > pivot){
                 left.add(num);
-            }else if( num < pivot){
+            }else if(num < pivot){
                 right.add(num);
             }else{
                 mid.add(num);
             }
         }
         if(k <= left.size()){
-            return quickSelect(left,k);
+            return quickSelect(left, k);
         }
-        if( left.size() + mid.size() < k){
-            return quickSelect(right, k - left.size() - mid.size());
+        if(left.size() + mid.size() < k){
+            return quickSelect(right, k - (left.size() + mid.size()));
         }
         return pivot;
     }
