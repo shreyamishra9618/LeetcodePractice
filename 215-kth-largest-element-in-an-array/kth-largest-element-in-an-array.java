@@ -1,5 +1,6 @@
 class Solution {
     public int findKthLargest(int[] nums, int k) {
+        // time complexity is NlogK
 			PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 			int size = 0;
 for(int i = 0; i < k; i++){
