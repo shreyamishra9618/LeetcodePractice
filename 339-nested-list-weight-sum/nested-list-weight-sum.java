@@ -28,14 +28,14 @@
  */
 class Solution {
     public int depthSum(List<NestedInteger> nestedList) {
-      return dfs(nestedList, 1);
+        return dfs(nestedList, 1);   
     }
-    private int dfs(List<NestedInteger> list, int depth){
+    public int dfs(List<NestedInteger> nestedList, int depth){
         int total =0;
-        for(NestedInteger nested : list){
+        for(NestedInteger nested : nestedList){
             if(nested.isInteger()){
                 total += nested.getInteger() * depth;
-            } else{
+            }else{
                 total += dfs(nested.getList(), depth +1);
             }
         }
