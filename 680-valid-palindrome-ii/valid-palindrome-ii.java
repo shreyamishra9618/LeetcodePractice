@@ -1,25 +1,25 @@
 class Solution {
     public boolean validPalindrome(String s) {
+        int j = s.length() -1;
         int i =0;
-        int j = s.length() - 1;
         while(i < j){
             if(s.charAt(i) != s.charAt(j)){
-              return   (checkPalindrome(s, i, j-1) || checkPalindrome(s, i+1,j));
+                return ( checkPalindrome(s,i,j-1) || checkPalindrome(s, i+1, j));
             }
             i++;
             j--;
         }
-       return true; 
+        return true;
+        
     }
-
     public boolean checkPalindrome(String s, int i, int j){
-        while(i < j){
-        if(s.charAt(i) != s.charAt(j)){
-        return false;
+        while( i < j){
+            if(s.charAt(i) != s.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
         }
-        i++;
-        j--;
-        }
-       return true;
+        return true;
     }
 }
