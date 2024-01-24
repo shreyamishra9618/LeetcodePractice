@@ -10,21 +10,12 @@ class Node {
 
 class Solution {
     public Node lowestCommonAncestor(Node p, Node q) {
-        List<Node> path = find_path(p);
-        while(q.parent != null){
-            for(Node node : path){
-                if(node == q) return q;
-            }
-            q = q.parent;
+        Node p1 =p;
+        Node q1 =q;
+        while(p1 != q1){
+            p1 = p1 == null ? q : p1.parent;
+            q1 = q1 == null ? p : q1.parent;
         }
-        return q;  
-    }
-    public List<Node> find_path(Node p){
-        List<Node> path = new ArrayList<>();
-        while(p != null){
-            path.add(p);
-            p = p.parent;
-        }
-        return path;
+        return p1;
     }
 }
